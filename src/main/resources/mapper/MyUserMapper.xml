@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myspringboot.mapper.MyUserMapper">
+    <resultMap id="UserResultMap" type="com.myspringboot.entity.MyUser">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, name, age
+   </sql>
+    <select id="findAllUsers" resultMap="UserResultMap">
+       select
+        <include refid="Base_Column_List" />
+        from
+         my_user
+    </select>
+
+    <select id="findUserById" resultMap="UserResultMap">
+        select
+        <include refid="Base_Column_List" />
+         from my_user WHERE id=#{id}
+    </select>
+
+    <insert id="insertUser" parameterType="MyUser" useGeneratedKeys="true" keyProperty="id">
+        insert into my_user(name,age) values(#{name},#{age})
+    </insert>
+
+    <delete id="deleteById">
+        delete from
+            my_user
+        where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.myspringboot.entity.MyUser">
+        update my_user
+        set name=#{name},age=#{age}
+        where id=#{id}
+    </update>
+</mapper>

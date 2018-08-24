@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/hello")
@@ -46,6 +48,15 @@ public class HelloController {
         return  user;
     }
 
+    @RequestMapping(value = "/user/all",produces = MediaType.APPLICATION_XML_VALUE)
+    public List<TestUser> getUserList(){
+        TestUser user=new TestUser(1,"test111",100);
+        TestUser user2=new TestUser(2,"test222",200);
+        List<TestUser> userList=new ArrayList<TestUser>();
+        userList.add(user);
+        userList.add(user2);
+        return  userList;
+    }
 
     @RequestMapping(value = "/user/{id}")
     public TestUser getUser(@PathVariable("id")long id){
