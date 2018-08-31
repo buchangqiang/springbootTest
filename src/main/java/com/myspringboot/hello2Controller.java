@@ -1,6 +1,7 @@
 package com.myspringboot;
 
 import com.myspringboot.controller.HelloController;
+import com.myspringboot.entity.MyStudent;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,10 @@ import java.util.Date;
 public class hello2Controller {
     @RequestMapping("/hello2")
     public  String home(){
+
+        MyStudent student=new MyStudent();
+        student.setId(100);
+
         return  "hello2...";
     }
 }
